@@ -1,0 +1,45 @@
+{{ define "symptom" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ template "_header" }}
+    <title>Daftar Gejala</title>
+</head>
+<body>
+    <header>
+        {{ template "_navbar_admin"}}
+    </header>
+
+    <main>
+        <div class="overflow-x-auto m-auto card w-11/12">
+            <div class="card-body">
+                <h1 class="card-title">Data Gejala</h1>
+                <table class="card-body table table-xs">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nama</th>
+                            <th>Deskripsi</th>
+                            <th>Pertanyaan</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        {{range $symptom := .Data}}
+                        <tr>
+                            <td>{{ $symptom.Id }}</td>
+                            <td>{{ $symptom.Name }}</td>
+                            <td>{{ $symptom.Descriptiom }}</td>
+                            <td>{{ $symptom.Question }}</td>
+                            <td>Action Here</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+{{ end }}

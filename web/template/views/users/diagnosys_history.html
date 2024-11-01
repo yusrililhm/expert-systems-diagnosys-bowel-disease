@@ -1,0 +1,42 @@
+{{ define "diagnosys_history" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ template "_header" }}
+    <title>Riwayat DIagnosis Anda</title>
+</head>
+<body>
+    <header>
+        {{ template "_navbar_user" }}
+    </header>
+
+    <main>
+        <div class="overflow-x-auto m-auto card w-11/12">
+            <div class="card-body">
+                <h1 class="card-title">Riwayat DIagnosis</h1>
+                <table class="card-body table table-xs">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Hasil Diagnosis</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        <tr>
+                            <!-- <td>1</td>
+                            <td>2024</td>
+                            <td>Normal</td>
+                            <td>lorem</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+{{ end }}

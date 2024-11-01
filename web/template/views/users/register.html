@@ -1,0 +1,70 @@
+{{ define "register" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ template "_header"}}
+    <title>Register</title>
+</head>
+<body>
+    <main class="flex items-center justify-center h-screen">
+        <div class="card bg-base-100 w-11/12 lg:w-96 shadow-2xl items-center m-auto">
+            <div class="card-body items-center w-full">
+                <h1 class="card-title text-center">Daftar Sekarang</h1>
+    
+                <form action="/api/v1/register" method="post" class="w-full" autocomplete="off">
+                    
+                    {{ .csrfField}}
+
+                    <div class="my-4">
+                        <label for="username">Username</label>
+                        <input class="input input-bordered w-full" type="text" name="username" id="username" required placeholder="Username">
+                    </div>
+        
+                    <div class="my-4">
+                        <label for="full_name">Nama lengkap</label>
+                        <input class="input input-bordered w-full" type="text" name="full_name" id="full_name" required placeholder="Nama lengkap">
+                    </div>
+        
+                    <div class="my-4">
+                        <label for="phone">Telpon</label>
+                        <input class="input input-bordered w-full" type="text" name="phone" id="phone" required placeholder="Telpon" maxlength="15">
+                    </div>
+        
+                    <div class="my-4">
+                        <label for="birth_date">Tanggal lahir</label>
+                        <input class="input input-bordered w-full" type="date" name="birth_date" id="birth_date" required placeholder="Tanggal lahir">
+                    </div>
+                            
+                    <div class="my-4">
+                        <label for="birth_date">Jenis Kelamin</label>
+                        <select name="gender" id="gender" class="input input-bordered w-full max-w-xs" required>
+                            <option disabled selected>Jenis Kelamin</option>
+                            <option value="false">Laki-laki</option>
+                            <option value="true">Perempuan</option>
+                        </select>
+                    </div>
+        
+                    <div class="my-4">
+                        <label for="password">
+                            Password 
+                        </label>
+                        <label for="warn" id="warn">
+                            <span id="warn-text" class="text-red-500">* Panjang password minimal 8</span>
+                        </label>
+                        <input class="input input-bordered w-full" type="password" name="password" id="password" required placeholder="Password" minlength="8">
+                    </div>
+                    
+                    <div class="card-actions">
+                        <button type="submit" class="btn btn-primary w-full" id="btn">Daftar Sekarang</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/scripts/eventPassword.js"></script>
+</body>
+</html>
+
+{{ end }}
