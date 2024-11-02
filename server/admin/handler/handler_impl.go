@@ -61,6 +61,9 @@ func (ah *adminHandler) AdminLogin(w http.ResponseWriter, r *http.Request) {
 
 // AdminLoginView implements AdminHandler.
 func (ah *adminHandler) AdminLoginView(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Encoding", "gzip")
+
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/login.html",
 		helper.Header,
@@ -81,6 +84,9 @@ func (ah *adminHandler) AdminLoginView(w http.ResponseWriter, r *http.Request) {
 
 // DashboardView implements AdminHandler.
 func (ah *adminHandler) DashboardView(w http.ResponseWriter, r *http.Request) {
+	
+	w.Header().Set("Content-Encoding", "gzip")
+
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/dashboard.html",
 		helper.Header,

@@ -14,6 +14,9 @@ type diseaseHandler struct {
 
 // DiseaseDashboardView implements DiseaseHandler.
 func (dh *diseaseHandler) DiseaseDashboardView(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Encoding", "gzip")
+
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/disease.html",
 		helper.Header,

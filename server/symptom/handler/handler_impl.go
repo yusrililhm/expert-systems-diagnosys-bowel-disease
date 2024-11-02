@@ -14,6 +14,9 @@ type symptomHandler struct {
 
 // SymptomDashboardView implements SymptomHandler.
 func (sh *symptomHandler) SymptomDashboardView(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Encoding", "gzip")
+
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/symptoms.html",
 		helper.Header,
