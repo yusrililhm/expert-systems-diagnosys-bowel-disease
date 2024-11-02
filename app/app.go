@@ -33,6 +33,16 @@ import (
 	chiMiddleware "github.com/go-chi/chi/v5/middleware"
 )
 
+func StartNonTLSServer() {
+	mux := chi.NewMux()
+
+	mux.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "https://localhost", http.StatusTemporaryRedirect)
+	}))
+
+	http.ListenAndServe(":80", mux)
+}
+
 func StartApp() {
 
 	// load env file
@@ -117,5 +127,9 @@ func StartApp() {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/template/assets/"))))
 
 	log.Printf("Server is running on PORT %s 🚀\n", os.Getenv("APP_PORT"))
-	http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), r)
+
+	if err := http.ListenAndServeTLS(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), "server.crt", "server.key", r); err != nil {
+		log.Fatal(err.Error())
+		return
+	}
 }
