@@ -25,8 +25,6 @@ type userHandler struct {
 // ChangePasswordView implements UserHandler.
 func (uh *userHandler) ChangePasswordView(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Encoding", "gzip")
-
 	temp, err := template.ParseFiles(helper.Header, helper.UserNavbar, "web/template/views/users/change_password.html")
 
 	if err != nil {
@@ -44,8 +42,6 @@ func (uh *userHandler) ChangePasswordView(w http.ResponseWriter, r *http.Request
 
 // DiagnosysHistoryView implements UserHandler.
 func (uh *userHandler) DiagnosysHistoryView(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Encoding", "gzip")
 
 	temp, err := template.ParseFiles(helper.Header, helper.UserNavbar, "web/template/views/users/diagnosys_history.html")
 
@@ -65,8 +61,6 @@ func (uh *userHandler) DiagnosysHistoryView(w http.ResponseWriter, r *http.Reque
 // LoginView implements UserHandler.
 func (uh *userHandler) LoginView(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Encoding", "gzip")
-
 	temp, err := template.ParseFiles(helper.Header, "web/template/views/users/login.html")
 
 	if err != nil {
@@ -84,8 +78,6 @@ func (uh *userHandler) LoginView(w http.ResponseWriter, r *http.Request) {
 
 // RegisterView implements UserHandler.
 func (uh *userHandler) RegisterView(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Encoding", "gzip")
 
 	temp, err := template.ParseFiles(helper.Header, "web/template/views/users/register.html")
 
@@ -216,8 +208,6 @@ func (uh *userHandler) Modify(w http.ResponseWriter, r *http.Request) {
 
 // ProfileView implements UserHandler.
 func (uh *userHandler) ProfileView(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Encoding", "gzip")
 
 	id := r.Context().Value(middleware.Key).(*entity.User).ID
 
