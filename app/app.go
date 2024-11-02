@@ -27,7 +27,6 @@ import (
 	userRepo "usus-sehat/server/user/repo"
 	userService "usus-sehat/server/user/service"
 
-	"github.com/gorilla/csrf"
 	"github.com/gorilla/securecookie"
 
 	"github.com/go-chi/chi/v5"
@@ -73,7 +72,10 @@ func StartApp() {
 	r := chi.NewRouter()
 
 	// csrf
-	r.Use(csrf.Protect(securecookie.GenerateRandomKey(32), csrf.Secure(false)))
+	// r.Use(csrf.Protect(securecookie.GenerateRandomKey(32), csrf.Secure(false)))
+
+	// gzip
+	r.Use(chiMiddleware.Compress(5))
 
 	// logger
 	r.Use(chiMiddleware.Logger)
