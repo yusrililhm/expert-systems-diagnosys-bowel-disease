@@ -74,9 +74,6 @@ func StartApp() {
 	// csrf
 	// r.Use(csrf.Protect(securecookie.GenerateRandomKey(32), csrf.Secure(false)))
 
-	// gzip
-	r.Use(chiMiddleware.Compress(5))
-
 	// logger
 	r.Use(chiMiddleware.Logger)
 
