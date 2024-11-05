@@ -1,4 +1,4 @@
-{{ define "disease" }}
+{{ define "treatment" }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +24,13 @@
                     </thead>
         
                     <tbody>
-                        <!-- {{range $user := .Data}}
+                        {{range $treatment := .Data}}
                         <tr>
-                            <td>{{ $user.Id }}</td>
-                            <td>{{ $user.Username }}</td>
-                            <td>{{ $user.FullName }}</td>
-                            <td>{{ $user.Phone }}</td>
-                            <td>{{ $user.BirthDate }}</td>
+                            <td>{{ $treatment.Id }}</td>
+                            <td>{{ $treatment.Description }}</td>
+                            <td></td>
                         </tr>
-                        {{ end }} -->
+                        {{ end }}
                     </tbody>
                 </table>
             </div>
