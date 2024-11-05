@@ -10,6 +10,10 @@ import (
 	adminRepo "usus-sehat/server/admin/repo"
 	adminService "usus-sehat/server/admin/service"
 
+	treatmentHandler "usus-sehat/server/treatments/handler"
+	treatmentRepo "usus-sehat/server/treatments/repo"
+	treatmentService "usus-sehat/server/treatments/service"
+
 	"usus-sehat/server/middleware"
 
 	symptomHandler "usus-sehat/server/symptom/handler"
@@ -76,6 +80,10 @@ func StartApp() {
 	ds := diseaseService.NewDiseaseService(dr)
 	dh := diseaseHandler.NewDiseaseHandler(ds)
 
+	tr := treatmentRepo.NewTreatmentRepo(db)
+	ts := treatmentService.NewTreatmentService(tr)
+	th := treatmentHandler.NewTreatmentHandler(ts)
+
 	md := middleware.NewMiddleware(sc, ur)
 
 	// router
@@ -120,13 +128,15 @@ func StartApp() {
 			r.Get("/admin/dashboard", ah.DashboardView)
 			r.Get("/admin/diseases", dh.DiseaseDashboardView)
 			r.Get("/admin/symptoms", sh.SymptomDashboardView)
-			r.Get("/admin/treatments", ah.DashboardView)
+			r.Get("/admin/treatments", th.TreatmentsDashboardView)
 		})
 	})
 
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/template/assets/"))))
 
 	log.Printf("Server is running on PORT %s 🚀\n", os.Getenv("APP_PORT"))
+
+	http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), r)
 
 	if err := http.ListenAndServeTLS(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), "server.crt", "server.key", r); err != nil {
 		log.Fatal(err.Error())
