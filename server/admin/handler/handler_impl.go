@@ -7,7 +7,6 @@ import (
 	"time"
 	"usus-sehat/server/admin/service"
 	"usus-sehat/server/dto"
-	"usus-sehat/server/helper"
 	"usus-sehat/server/model"
 
 	"github.com/gorilla/csrf"
@@ -64,7 +63,7 @@ func (ah *adminHandler) AdminLoginView(w http.ResponseWriter, r *http.Request) {
 
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/login.html",
-		helper.Header,
+		model.Header,
 	)
 
 	if err != nil {
@@ -85,8 +84,8 @@ func (ah *adminHandler) DashboardView(w http.ResponseWriter, r *http.Request) {
 
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/dashboard.html",
-		helper.Header,
-		helper.AdminNavbar,
+		model.Header,
+		model.AdminNavbar,
 	)
 
 	if err != nil {
@@ -99,7 +98,7 @@ func (ah *adminHandler) DashboardView(w http.ResponseWriter, r *http.Request) {
 
 	if e != nil {
 		w.WriteHeader(e.Status())
-		w.Write(helper.ToJSON(e))
+		w.Write(model.ToJSON(e))
 
 		return
 	}

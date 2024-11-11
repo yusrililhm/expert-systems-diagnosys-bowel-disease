@@ -25,7 +25,7 @@ type userHandler struct {
 // ChangePasswordView implements UserHandler.
 func (uh *userHandler) ChangePasswordView(w http.ResponseWriter, r *http.Request) {
 
-	temp, err := template.ParseFiles(helper.Header, helper.UserNavbar, "web/template/views/users/change_password.html")
+	temp, err := template.ParseFiles(model.Header, model.UserNavbar, "web/template/views/users/change_password.html")
 
 	if err != nil {
 		log.Println("[warn]", err.Error())
@@ -43,7 +43,7 @@ func (uh *userHandler) ChangePasswordView(w http.ResponseWriter, r *http.Request
 // DiagnosysHistoryView implements UserHandler.
 func (uh *userHandler) DiagnosysHistoryView(w http.ResponseWriter, r *http.Request) {
 
-	temp, err := template.ParseFiles(helper.Header, helper.UserNavbar, "web/template/views/users/diagnosys_history.html")
+	temp, err := template.ParseFiles(model.Header, model.UserNavbar, "web/template/views/users/diagnosys_history.html")
 
 	if err != nil {
 		log.Println("[warn]", err.Error())
@@ -61,7 +61,7 @@ func (uh *userHandler) DiagnosysHistoryView(w http.ResponseWriter, r *http.Reque
 // LoginView implements UserHandler.
 func (uh *userHandler) LoginView(w http.ResponseWriter, r *http.Request) {
 
-	temp, err := template.ParseFiles(helper.Header, "web/template/views/users/login.html")
+	temp, err := template.ParseFiles(model.Header, "web/template/views/users/login.html")
 
 	if err != nil {
 		log.Println("[warn]", err.Error())
@@ -79,7 +79,7 @@ func (uh *userHandler) LoginView(w http.ResponseWriter, r *http.Request) {
 // RegisterView implements UserHandler.
 func (uh *userHandler) RegisterView(w http.ResponseWriter, r *http.Request) {
 
-	temp, err := template.ParseFiles(helper.Header, "web/template/views/users/register.html")
+	temp, err := template.ParseFiles(model.Header, "web/template/views/users/register.html")
 
 	if err != nil {
 		log.Println("[warn]", err.Error())
@@ -218,7 +218,7 @@ func (uh *userHandler) ProfileView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	temp, err := template.ParseFiles(helper.Header, helper.UserNavbar, "web/template/views/users/profile.html")
+	temp, err := template.ParseFiles(model.Header, model.UserNavbar, "web/template/views/users/profile.html")
 
 	if err != nil {
 		log.Println("[warn]", err.Error())

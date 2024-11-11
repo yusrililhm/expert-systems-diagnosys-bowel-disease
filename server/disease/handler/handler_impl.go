@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"usus-sehat/server/disease/service"
-	"usus-sehat/server/helper"
+	"usus-sehat/server/model"
 )
 
 type diseaseHandler struct {
@@ -17,8 +17,8 @@ func (dh *diseaseHandler) DiseaseDashboardView(w http.ResponseWriter, r *http.Re
 
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/disease.html",
-		helper.Header,
-		helper.AdminNavbar,
+		model.Header,
+		model.AdminNavbar,
 	)
 
 	if err != nil {
@@ -31,7 +31,7 @@ func (dh *diseaseHandler) DiseaseDashboardView(w http.ResponseWriter, r *http.Re
 
 	if e != nil {
 		w.WriteHeader(e.Status())
-		w.Write(helper.ToJSON(e))
+		w.Write(model.ToJSON(e))
 
 		return
 	}

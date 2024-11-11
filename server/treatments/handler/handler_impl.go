@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"usus-sehat/server/helper"
+	"usus-sehat/server/model"
 	"usus-sehat/server/treatments/service"
 )
 
@@ -17,8 +17,8 @@ func (th *treatmentHandler) TreatmentsDashboardView(w http.ResponseWriter, r *ht
 
 	templ, err := template.ParseFiles(
 		"web/template/views/admin/treatments.html",
-		helper.Header,
-		helper.AdminNavbar,
+		model.Header,
+		model.AdminNavbar,
 	)
 
 	if err != nil {
@@ -31,7 +31,7 @@ func (th *treatmentHandler) TreatmentsDashboardView(w http.ResponseWriter, r *ht
 
 	if e != nil {
 		w.WriteHeader(e.Status())
-		w.Write(helper.ToJSON(e))
+		w.Write(model.ToJSON(e))
 
 		return
 	}
