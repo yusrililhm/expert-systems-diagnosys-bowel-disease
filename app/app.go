@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -9,6 +10,7 @@ import (
 	adminHandler "usus-sehat/server/admin/handler"
 	adminRepo "usus-sehat/server/admin/repo"
 	adminService "usus-sehat/server/admin/service"
+	"usus-sehat/server/model"
 
 	treatmentHandler "usus-sehat/server/treatments/handler"
 	treatmentRepo "usus-sehat/server/treatments/repo"
@@ -98,6 +100,19 @@ func StartApp() {
 	// recoverer
 	r.Use(chiMiddleware.Recoverer)
 
+	// index
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		templ, err := template.ParseFiles("web/template/views/index.html", model.Header, model.Navbar, model.Footer)
+
+		if err != nil {
+			log.Println("[warn] an error occured", err.Error())
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return 
+		}
+		
+		templ.ExecuteTemplate(w, "index", nil)
+	})
+
 	// user group routes
 	r.Group(func(r chi.Router) {
 		r.Post("/api/v1/register", uh.Register)
@@ -136,10 +151,7 @@ func StartApp() {
 
 	log.Printf("Server is running on PORT %s 🚀\n", os.Getenv("APP_PORT"))
 
-	http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), r)
-
 	if err := http.ListenAndServeTLS(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), "server.crt", "server.key", r); err != nil {
 		log.Fatal(err.Error())
-		return
 	}
 }
