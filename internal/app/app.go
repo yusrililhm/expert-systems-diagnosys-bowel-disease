@@ -15,6 +15,7 @@ import (
 	treatmentRepo "usus-sehat/cmd/treatments/repo"
 	treatmentService "usus-sehat/cmd/treatments/service"
 
+	"usus-sehat/configs"
 	"usus-sehat/internal/domain/model"
 	"usus-sehat/internal/pkg/db"
 	"usus-sehat/internal/pkg/middleware"
@@ -26,8 +27,6 @@ import (
 	diseaseHandler "usus-sehat/cmd/disease/handler"
 	diseaseRepo "usus-sehat/cmd/disease/repo"
 	diseaseService "usus-sehat/cmd/disease/service"
-
-	"usus-sehat/configs"
 
 	userHandler "usus-sehat/cmd/user/handler"
 	userRepo "usus-sehat/cmd/user/repo"
