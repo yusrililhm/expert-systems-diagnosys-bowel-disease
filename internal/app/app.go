@@ -146,7 +146,8 @@ func StartApp() {
 		})
 	})
 
-	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/template/assets/"))))
+	r.Handle("/assets/*", http.StripPrefix("/asstes/", http.FileServer(http.Dir("assets/"))))
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static/"))))
 
 	log.Printf("Server is running on PORT %s 🚀\n", os.Getenv("APP_PORT"))
 
