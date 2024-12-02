@@ -1,0 +1,39 @@
+version: '3.8'
+
+volumes:
+  postgres-volume:
+
+services:
+  postgres:
+    restart: always
+    volumes:
+      - postgres-volume:/data
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    image: postgres:17.0-alpine3.20
+    container_name: postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 250M
+  
+  healthy_bowel:
+    build: .
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    container_name: healthy-bowel
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+    volumes:
+      - ./server.crt:/healthy-bowel
+      - ./server.key:/healthy-bowel
